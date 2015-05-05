@@ -62,7 +62,11 @@ class LogicalVolume(object):
 
     def __init__(self, vg, lv_name):
         self.vg = vg
-        self.name = lv_name
+        self._name = lv_name
+
+    @property
+    def name(self):
+        return self._name.strip("[]")
 
     def __str__(self):
         return '<LV %s/%s>' % (self.vg.name, self.name)
